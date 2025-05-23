@@ -1,6 +1,223 @@
 <!DOCTYPE html>
-    <html>  
-        <body>
-            <p style="font-weight: bold;font-size: 10rem;">JOHN D. EÑOZA</p>
-        </body>
-    </html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>John Eñoza Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background: linear-gradient(120deg, #e0e7ff 0%, #f4f4f4 100%);
+            color: #222;
+        }
+        .navbar {
+            background: #2563eb;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar-title {
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .navbar-menu {
+            display: flex;
+            gap: 28px;
+        }
+        .navbar-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: border 0.2s, color 0.2s;
+        }
+        .navbar-menu a:hover, .navbar-menu a.active {
+            border-bottom: 2px solid #fff;
+            color: #e0e7ff;
+        }
+        .container {
+            background: #fff;
+            padding: 40px 32px 32px 32px;
+            border-radius: 18px;
+            max-width: 700px;
+            margin: 48px auto;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 1.5px 4px rgba(0,0,0,0.08);
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #2563eb;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+            background: #e0e7ff;
+        }
+        .profile-info h1 {
+            margin: 0 0 8px 0;
+            font-size: 2.2em;
+            color: #2563eb;
+            letter-spacing: 1px;
+        }
+        .profile-info p {
+            margin: 0;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .section {
+            margin-bottom: 32px;
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        .section-title {
+            font-size: 1.15em;
+            color: #2563eb;
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-left: 4px solid #2563eb;
+            padding-left: 10px;
+        }
+        ul {
+            padding-left: 22px;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 7px;
+            font-size: 1em;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #1e40af;
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                height: auto;
+                padding: 12px 6vw;
+                gap: 8px;
+            }
+            .navbar-menu {
+                gap: 18px;
+            }
+            .container {
+                padding: 18px 6vw;
+            }
+            .profile-header {
+                flex-direction: column;
+                gap: 18px;
+                text-align: center;
+            }
+            .profile-img {
+                width: 110px;
+                height: 110px;
+            }
+        }
+    </style>
+    <script>
+        // SPA-like navigation with bookmarks
+        function showSectionFromHash() {
+            const hash = window.location.hash || "#about";
+            document.querySelectorAll('.section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            const activeSection = document.querySelector(hash);
+            if (activeSection) {
+                activeSection.classList.add('active');
+            }
+            // Highlight nav
+            document.querySelectorAll('.navbar-menu a').forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === hash);
+            });
+        }
+        window.addEventListener('DOMContentLoaded', showSectionFromHash);
+        window.addEventListener('hashchange', showSectionFromHash);
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-title">John Eñoza</div>
+        <div class="navbar-menu">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="profile-header">
+            <img src="Images/EÑOZA, JOHN SFTG CCT_18655.jpg" alt="John Eñoza" class="profile-img">
+            <div class="profile-info">
+                <h1>John D. Eñoza</h1>
+                <p><strong>Software Developer</strong> &nbsp;|&nbsp; <span style="color:#2563eb;">CCT_18655</span></p>
+                <p style="margin-top:8px;font-size:0.98em;color:#888;">
+                    <span>📍 Manila, Philippines</span>
+                </p>
+            </div>
+        </div>
+        <section id="about" class="section">
+            <div class="section-title">About Me</div>
+            <p>
+                I am a dedicated software developer with a strong background in building robust web and desktop applications. My passion lies in solving complex problems, collaborating with teams, and continuously learning new technologies to deliver impactful solutions.
+            </p>
+        </section>
+        <section id="skills" class="section">
+            <div class="section-title">Skills</div>
+            <ul>
+                <li><strong>Languages:</strong> HTML, CSS, JavaScript, Python, Java</li>
+                <li><strong>Frameworks:</strong> React, Node.js</li>
+                <li><strong>Databases:</strong> SQL, MongoDB</li>
+                <li><strong>Tools:</strong> Git &amp; GitHub, VS Code</li>
+                <li><strong>Soft Skills:</strong> Problem-solving, Teamwork, Communication</li>
+            </ul>
+        </section>
+        <section id="projects" class="section">
+            <div class="section-title">Projects</div>
+            <ul>
+                <li>
+                    <strong>Portfolio Website:</strong> 
+                    <span style="color:#555;">A modern, responsive personal website to showcase my skills and projects.</span>
+                </li>
+                <li>
+                    <strong>Task Manager App:</strong> 
+                    <span style="color:#555;">A productivity web app for managing daily tasks efficiently.</span>
+                </li>
+                <li>
+                    <strong>Weather Dashboard:</strong> 
+                    <span style="color:#555;">Real-time weather updates using public APIs and interactive charts.</span>
+                </li>
+            </ul>
+        </section>
+        <section id="contact" class="section">
+            <div class="section-title">Contact</div>
+            <p>
+                <strong>Email:</strong> <a href="mailto:john.enoza@email.com">john.enoza@email.com</a><br>
+                <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/johnenoza" target="_blank">linkedin.com/in/johnenoza</a>
+            </p>
+        </section>
+    </div>
+</body>
+</html>
