@@ -1,4 +1,4 @@
-    :root {
+:root {
       --primary-color: #6366f1;
       --secondary-color: #0f0f23;
       --card-color: #1e1e3f;
@@ -528,6 +528,25 @@
       height: 20px;
     }
 
+    /* Make social media icons match the h1 color */
+    .social-links a svg {
+      fill: var(--primary-color, #2563eb) !important;
+      color: var(--primary-color, #2563eb) !important;
+      transition: fill 0.2s, color 0.2s;
+    }
+
+    /* Remove fill for email icon for better visibility */
+    .social-links a.email svg {
+      fill: none !important;
+      stroke: var(--primary-color, #2563eb) !important;
+      color: var(--primary-color, #2563eb) !important;
+    }
+
+    /* Optional: On hover, you can darken or lighten */
+    .social-links a:hover svg {
+      filter: brightness(1.2);
+    }
+
     .tooltip {
       position: relative;
     }
@@ -574,4 +593,3 @@
         gap: 15px;
       }
     }
-    
