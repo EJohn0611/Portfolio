@@ -2,21 +2,21 @@ class SectionAnimationController {
   constructor() {
     this.currentSection = null;
     this.sections = document.querySelectorAll('section');
-    this.isMobile = window.matchMedia('(max-width: 768px)').matches; // Detect mobile
+    this.isMobile = window.matchMedia('(max-width: 768px)').matches; 
     this.init();
   }
 
   init() {
-    const threshold = this.isMobile ? 0.1 : 0.3; // Lower threshold for mobile
+    const threshold = this.isMobile ? 0.1 : 0.3; 
     const rootMargin = this.isMobile ? '0px 0px -35% 0px' : '-50px 0px -50px 0px';
-    // Observer setup
+    
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           this.animateIn(entry.target);
           this.currentSection = entry.target;
         } else {
-          // On mobile, do NOT fade-out
+         
           if (!this.isMobile) {
             this.animateOut(entry.target);
           }
@@ -27,12 +27,12 @@ class SectionAnimationController {
       rootMargin
     });
 
-    // Observe all
+    
     this.sections.forEach(section => {
       this.observer.observe(section);
     });
 
-    // Initial state: all hidden
+    
     this.sections.forEach(section => {
       const elements = section.querySelectorAll('.fade-element');
       elements.forEach(el => {
@@ -45,7 +45,7 @@ class SectionAnimationController {
   animateIn(section) {
     const elements = section.querySelectorAll('.fade-element');
     elements.forEach((element, index) => {
-      // Remove fade-out class and add fade-in with staggered delay
+     
       setTimeout(() => {
         element.classList.remove('fade-out');
         element.classList.add('fade-in');
@@ -64,11 +64,11 @@ class SectionAnimationController {
   }
 }
 
-// Initialize when DOM is loaded
+
 document.addEventListener('DOMContentLoaded', () => {
   new SectionAnimationController();
   
-  // Close menu when clicking outside on mobile
+  
   document.addEventListener('click', (e) => {
     const nav = document.getElementById('nav');
     const mobileBtn = document.querySelector('.mobileVIew');
@@ -81,24 +81,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const sections = document.querySelectorAll('.section-fade');
+
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in');
+        entry.target.classList.remove('fade-out');
+      } else {
+        entry.target.classList.remove('fade-in');
+        entry.target.classList.add('fade-out');
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+
+ 
   function showSectionFromHash() {
     const hash = window.location.hash || "#about";
-    document.querySelectorAll('.section-fade').forEach(sec => {
+    sections.forEach(sec => {
       if ("#" + sec.id === hash) {
-        sec.classList.remove('fade-out');
+        sec.scrollIntoView({ behavior: "smooth" });
         sec.classList.add('fade-in');
-      } else {
-        sec.classList.remove('fade-in');
-        sec.classList.add('fade-out');
+        sec.classList.remove('fade-out');
       }
     });
   }
 
-  // Initial state
-  showSectionFromHash();
-
-  // On hash change
   window.addEventListener('hashchange', showSectionFromHash);
+
+  
+  sections.forEach(section => {
+    if (section.getBoundingClientRect().top < window.innerHeight &&
+        section.getBoundingClientRect().bottom > 0) {
+      section.classList.add('fade-in');
+    }
+  });
 });
 
 function copyValue(element) {

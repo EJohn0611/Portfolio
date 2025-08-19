@@ -121,7 +121,6 @@
       justify-content: center;
     }
 
-    /* Animation classes for content elements */
     .fade-element {
       opacity: 0;
       transform: translateY(30px);
@@ -138,14 +137,12 @@
       transform: translateY(-20px);
     }
 
-    /* Staggered animation delays */
     .fade-element:nth-child(1) { transition-delay: 0.1s; }
     .fade-element:nth-child(2) { transition-delay: 0.2s; }
     .fade-element:nth-child(3) { transition-delay: 0.3s; }
     .fade-element:nth-child(4) { transition-delay: 0.4s; }
     .fade-element:nth-child(5) { transition-delay: 0.5s; }
 
-    /* Special delays for grid items */
     .card-grid .fade-element:nth-child(n) { 
       transition-delay: calc(0.1s * var(--index, 1));
     }
@@ -215,7 +212,6 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    /* Updated Mobile Navigation */
     @media (max-width: 768px) {
       .mobileVIew {
         display: flex;
@@ -251,7 +247,6 @@
         border: 1px solid rgba(255, 255, 255, 0.2);
       }
 
-      /* Overlay when menu is open */
       nav::before {
         content: '';
         position: fixed;
@@ -271,13 +266,11 @@
         pointer-events: auto;
       }
 
-      /* Adjust header to be fixed */
       header {
         position: fixed;
         width: 100%;
       }
 
-      /* Adjust section padding for fixed header */
       section {
         padding-top: 100px;
         min-height: calc(100vh - 100px);
@@ -528,21 +521,18 @@
       height: 20px;
     }
 
-    /* Make social media icons match the h1 color */
     .social-links a svg {
       fill: var(--primary-color, #2563eb) !important;
       color: var(--primary-color, #2563eb) !important;
       transition: fill 0.2s, color 0.2s;
     }
 
-    /* Remove fill for email icon for better visibility */
     .social-links a.email svg {
       fill: none !important;
       stroke: var(--primary-color, #2563eb) !important;
       color: var(--primary-color, #2563eb) !important;
     }
 
-    /* Optional: On hover, you can darken or lighten */
     .social-links a:hover svg {
       filter: brightness(1.2);
     }
@@ -581,12 +571,10 @@
     .section-fade.fade-in {
       opacity: 1;
       pointer-events: auto;
-      transition: opacity 0.6s;
     }
     .section-fade.fade-out {
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.6s;
     }
 
     @media (max-width: 600px) {
