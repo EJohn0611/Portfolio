@@ -80,6 +80,25 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileBtn.classList.remove('active');
     }
   });
+
+  function showSectionFromHash() {
+    const hash = window.location.hash || "#about";
+    document.querySelectorAll('.section-fade').forEach(sec => {
+      if ("#" + sec.id === hash) {
+        sec.classList.remove('fade-out');
+        sec.classList.add('fade-in');
+      } else {
+        sec.classList.remove('fade-in');
+        sec.classList.add('fade-out');
+      }
+    });
+  }
+
+  // Initial state
+  showSectionFromHash();
+
+  // On hash change
+  window.addEventListener('hashchange', showSectionFromHash);
 });
 
 function copyValue(element) {
